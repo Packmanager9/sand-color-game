@@ -1019,12 +1019,12 @@ function setUp(canvas_pass, style = "#000000") {
         // if (keysPressed[' ']) {
         //     stop2 = -5
         // }
-    }, 40)
-    document.addEventListener('keydown', (event) => {
-        keysPressed[event.key] = true;
+    }, 17)
+    window.addEventListener('keydown', (event) => {
+        keysPressed[(event.key).toLowerCase()] = true;
     });
     document.addEventListener('keyup', (event) => {
-        delete keysPressed[event.key];
+        delete keysPressed[(event.key).toLowerCase()];
     });
     window.addEventListener('pointerdown', e => {
         FLEX_engine = canvas.getBoundingClientRect();
@@ -2165,7 +2165,7 @@ class Grain {
                 this.w[t].g = gf
                 this.w[t].b = bf
             }
-        } else if (keysPressed['e']) {
+        } else if (keysPressed['eee']) {
             this.n = sand.trueneighbors(this)
         }
         pix2.data[this.p] = this.r + (this.impact * 255)
@@ -2497,7 +2497,6 @@ class Sandmap {
         let strip = [] // width tester
 
             for (let d = 0; d < n.length; d++) {
-                n[d].sortflag = 0
                 if(strip.includes(n[d].t)){
 
                 }else{
@@ -2647,7 +2646,7 @@ class Sandmap {
                 }
 
 
-                if (keysPressed['e']) {
+                if (keysPressed['eee']) {
                     n = this.trueneighbors(this.blocks[x][y])
                     let max = 9999999999
                     let i = -1
@@ -2868,9 +2867,7 @@ class Sandmap {
 
             let hue = Math.abs(((f.zr - node.zr) * (f.zr - node.zr)) + ((f.zg - node.zg) * (f.zg - node.zg)) + ((f.zb - node.zb) * (f.zb - node.zb)))
             // //console.log(f)
-
-            if (f.impact == 1) {
-            } else if (hue < (65 * 65)) {
+if (hue < (65 * 65)) {
                 ret.push(grid[x - 1][y]);
             }
             // }
@@ -2886,9 +2883,7 @@ class Sandmap {
             let hue = Math.abs(((f.zr - node.zr) * (f.zr - node.zr)) + ((f.zg - node.zg) * (f.zg - node.zg)) + ((f.zb - node.zb) * (f.zb - node.zb)))
             ////console.log(f.zr,f.zg,f.zb)
 
-
-            if (f.impact == 1) {
-            } else if (hue < (65 * 65)) {
+if (hue < (65 * 65)) {
                 ret.push(grid[(x + 1)][y]);
             }
             // }
@@ -2905,9 +2900,7 @@ class Sandmap {
             ////console.log(f.zr,f.zg,f.zb)
 
 
-
-            if (f.impact == 1) {
-            } else if (hue < (65 * 65)) {
+if (hue < (65 * 65)) {
                 ret.push(grid[x][(y - 1 >= 0 ? (y - 1) : grid.length - 1)]);
             }
             // }
@@ -2923,9 +2916,7 @@ class Sandmap {
             ////console.log(f.zr,f.zg,f.zb)
 
 
-
-            if (f.impact == 1) {
-            } else if (hue < (65 * 65)) {
+if (hue < (65 * 65)) {
                 ret.push(grid[x][y + 1]);
             }
             // }
@@ -2942,8 +2933,7 @@ class Sandmap {
 
 
 
-                if (f.impact == 1) {
-                } else if (hue < (65 * 65)) {
+               if (hue < (65 * 65)) {
                     ret.push(grid[x - 1][(y - 1)]);
                 }
                 // }
@@ -2958,8 +2948,7 @@ class Sandmap {
 
 
 
-                if (f.impact == 1) {
-                } else if (hue < (65 * 65)) {
+               if (hue < (65 * 65)) {
                     ret.push(grid[(x + 1)][(y - 1)]);
                 }
             }
@@ -2975,8 +2964,7 @@ class Sandmap {
 
 
 
-                if (f.impact == 1) {
-                } else if (hue < (65 * 65)) {
+               if (hue < (65 * 65)) {
                     ret.push(grid[x - 1][y + 1]);
                 }
             }
@@ -2990,8 +2978,7 @@ class Sandmap {
 
 
 
-                if (f.impact == 1) {
-                } else if (hue < (65 * 65)) {
+               if (hue < (65 * 65)) {
                     ret.push(grid[(x + 1)][y + 1]);
                 }
                 // }
@@ -3124,6 +3111,13 @@ function main() {
             color.b = sand.blocks[p.x][p.y].zb
             p.y++
         }
+
+        for(let t= 0;t<sand.blocks.length;t++){
+            for(let k= 0;k<sand.blocks.length;k++){
+            sand.blocks[t][k].sortflag =0
+            }
+        }
+        // n[d].sortflag = 0
         // }
         if (sand.show == "#ff8800") {
 
