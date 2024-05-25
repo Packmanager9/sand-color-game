@@ -3137,7 +3137,7 @@ function main() {
 
             sand.greenFlag = 1
         }
-        if(sandtick%120 == 0){
+        // if(sandtick%120 == 0){
         if (Math.random() < .333) {
             sand.show = "#ff8800"
         } else if (Math.random() < .5) {
